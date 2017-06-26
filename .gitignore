@@ -63,4 +63,4 @@ local.properties
 .idea
 build
 import-summary.txt
-/app/source/main/res/values/secrets.xml
+secrets.xml
