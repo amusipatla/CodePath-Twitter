@@ -36,7 +36,7 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 	public void onComposeAction(MenuItem mi) {
 		// first parameter is the context, second is the class of the activity to launch
 		Intent i = new Intent(this, ComposeActivity.class);
-		startActivityForResult(i, 0); // brings up the second activity
+		startActivityForResult(i, 1); // brings up the second activity
 	}
 
 	// OAuth authentication flow failed, handle the error
