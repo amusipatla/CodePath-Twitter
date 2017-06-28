@@ -10,20 +10,41 @@
         android:id="@+id/etNewTweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/bNewTweet"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
+        android:inputType="textMultiLine"
+        android:maxLength="140"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="16dp" />
+
+    <!--<EditText-->
+        <!--android:id="@+id/etNewTweet"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:ems="10"-->
+        <!--android:inputType="textPersonName"-->
+        <!--android:counter-->
+        <!--android:text="Name"-->
+        <!--tools:layout_editor_absoluteX="16dp"-->
+        <!--tools:layout_editor_absoluteY="16dp" />-->
 
     <Button
         android:id="@+id/bNewTweet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Tweet"
         android:onClick="onSubmit"
         tools:layout_editor_absoluteX="231dp"
         tools:layout_editor_absoluteY="16dp"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/etNewTweet" />
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/bNewTweet"
+        android:text="140/140" />
 </RelativeLayout>

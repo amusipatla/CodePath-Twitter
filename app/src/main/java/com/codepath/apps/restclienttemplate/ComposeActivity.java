@@ -3,9 +3,12 @@ package com.codepath.apps.restclienttemplate;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -21,6 +24,20 @@ public class ComposeActivity extends AppCompatActivity {
     EditText etNewTweet;
     String tweetText;
     TwitterClient client;
+    private TextView tvCounter;
+
+    private final TextWatcher mTextEditorWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            //This sets a textview to the current length
+            tvCounter.setText(String.valueOf(140- s.length()) + "/140");
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +46,13 @@ public class ComposeActivity extends AppCompatActivity {
 
         client = TwitterApp.getRestClient();
         etNewTweet = (EditText) findViewById(R.id.etNewTweet);
+        tvCounter = (TextView) findViewById(R.id.tvCounter);
+
+        etNewTweet.addTextChangedListener(mTextEditorWatcher);
 
         getSupportActionBar().setTitle("New Tweet");
     }
+
 
     public void onSubmit(View v) {
         // closes the activity and returns to first screen
