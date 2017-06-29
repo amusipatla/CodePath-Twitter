@@ -1,10 +1,12 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -73,12 +75,13 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
     }
 
     //create ViewHolder class
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView ivProfileImage;
         public TextView tvUserName;
         public TextView tvBody;
         public TextView tvScreenName;
         public TextView tvRelativeTime;
+        public ImageButton ibReply;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -89,6 +92,17 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvBody = (TextView) itemView.findViewById(R.id.tvBody);
             tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
             tvRelativeTime = (TextView) itemView.findViewById(R.id.tvRelativeTime);
+            ibReply = (ImageButton) itemView.findViewById(R.id.ibReply);
+
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Intent i = new Intent(context, ReplyActivity.class);
+                    i.putExtra("tweet", mTweets.get(pos));
+                    context.startActivity(i);
+                }
+            });
         }
 
     }

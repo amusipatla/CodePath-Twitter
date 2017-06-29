@@ -2,11 +2,9 @@ package com.codepath.apps.restclienttemplate;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
@@ -14,25 +12,25 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
 	MenuItem miActionProgressItem;
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		// Store instance of the menu item containing progress
-		miActionProgressItem = menu.findItem(R.id.miActionProgress);
-		// Extract the action-view from the menu item
-		ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
-		// Return to finish
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	public void showProgressBar() {
-		// Show progress item
-		miActionProgressItem.setVisible(true);
-	}
-
-	public void hideProgressBar() {
-		// Hide progress item
-		miActionProgressItem.setVisible(false);
-	}
+//	@Override
+//	public boolean onPrepareOptionsMenu(Menu menu) {
+//		// Store instance of the menu item containing progress
+//		miActionProgressItem = menu.findItem(R.id.miActionProgress);
+//		// Extract the action-view from the menu item
+//		ProgressBar v =  (ProgressBar) MenuItemCompat.getActionView(miActionProgressItem);
+//		// Return to finish
+//		return super.onPrepareOptionsMenu(menu);
+//	}
+//
+//	public void showProgressBar() {
+//		// Show progress item
+//		miActionProgressItem.setVisible(true);
+//	}
+//
+//	public void hideProgressBar() {
+//		// Hide progress item
+//		miActionProgressItem.setVisible(false);
+//	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

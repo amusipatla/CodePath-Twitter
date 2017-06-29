@@ -173,7 +173,6 @@ public class TimelineActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-
             }
 
             @Override
@@ -195,4 +194,5 @@ public class TimelineActivity extends AppCompatActivity {
             }
         });
     }
+
 }
