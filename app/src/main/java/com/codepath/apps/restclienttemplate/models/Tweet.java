@@ -24,6 +24,8 @@ public class Tweet implements Parcelable {
     public String createdAt;
     public String relativeTime;
     public String sUid;
+    public Boolean favorited;
+    public Boolean retweeted;
 
     //deserialize JSON
     public static Tweet fromJSON(JSONObject jsonObject) throws JSONException{
@@ -36,6 +38,8 @@ public class Tweet implements Parcelable {
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.relativeTime = getRelativeTimeAgo(tweet.createdAt);
         tweet.user = User.fromJSON(jsonObject.getJSONObject("user"));
+        tweet.favorited = jsonObject.getBoolean("favorited");
+        tweet.retweeted = jsonObject.getBoolean("retweeted");
         return tweet;
     }
 
@@ -71,6 +75,8 @@ public class Tweet implements Parcelable {
         dest.writeString(this.createdAt);
         dest.writeString(this.relativeTime);
         dest.writeString(this.sUid);
+        dest.writeByte((byte) (favorited ? 1 : 0));
+        dest.writeByte((byte) (retweeted ? 1 : 0));
     }
 
     public Tweet() {
@@ -83,6 +89,8 @@ public class Tweet implements Parcelable {
         this.createdAt = in.readString();
         this.relativeTime = in.readString();
         this.sUid = in.readString();
+        this.favorited = in.readByte() != 0;
+        this.retweeted = in.readByte() != 0;
     }
 
     public static final Parcelable.Creator<Tweet> CREATOR = new Parcelable.Creator<Tweet>() {

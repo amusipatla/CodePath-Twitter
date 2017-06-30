@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.codepath.apps.restclienttemplate.tweetDetails">
+    tools:context="com.codepath.apps.restclienttemplate.TweetDetails">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/ivDetailPic"
         android:layout_width="65dp"
         android:layout_height="71dp"
         app:srcCompat="@drawable/ic_launcher"
@@ -15,32 +15,61 @@
         tools:layout_editor_absoluteY="4dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvDetailName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="4dp"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imageView" />
+        android:layout_toEndOf="@+id/ivDetailPic" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvDetailHandle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailName"
+        android:layout_toEndOf="@+id/ivDetailPic"
         android:text="TextView"
         tools:layout_editor_absoluteX="64dp"
-        tools:layout_editor_absoluteY="21dp"
-        android:layout_below="@+id/textView"
-        android:layout_toEndOf="@+id/imageView" />
+        tools:layout_editor_absoluteY="21dp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="214dp"
-        android:layout_height="19dp"
+        android:id="@+id/tvDetailTweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/ivDetailPic"
         android:text="TextView"
-        tools:layout_editor_absoluteY="52dp"
+        android:autoLink="all"
         tools:layout_editor_absoluteX="16dp"
-        android:layout_below="@+id/imageView"
-        android:layout_alignParentStart="true" />
+        tools:layout_editor_absoluteY="52dp"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/ibDetailReply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/reply"
+        android:layout_below="@+id/tvDetailTweet"
+        android:layout_alignEnd="@+id/ivDetailPic" />
+
+    <ImageButton
+        android:id="@+id/ibDetailFavorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@+id/ibDetailReply"
+        android:layout_toEndOf="@+id/tvDetailHandle"
+        android:background="@android:color/white"
+        app:srcCompat="?android:attr/selectableItemBackground" />
+
+    <ImageButton
+        android:id="@+id/ibDetailRetweet"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/ibDetailFavorite"
+        android:layout_marginStart="63dp"
+        android:layout_toEndOf="@+id/ibDetailFavorite"
+        android:background="@android:color/white"
+        app:srcCompat="?android:attr/selectableItemBackground" />
 </RelativeLayout>

@@ -113,7 +113,5 @@ public class ReplyActivity extends AppCompatActivity {
                 throwable.printStackTrace();            }
         });
 
-
-
     }
 }
