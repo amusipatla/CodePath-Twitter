@@ -6,6 +6,7 @@
         res/values-v11/styles.xml on API 14+ devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">#1DA1F2</item>
         <!-- API 14 theme customizations can go here. -->
     </style>
 

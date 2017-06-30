@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by amusipatla on 6/26/17.
@@ -64,8 +67,11 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         holder.tvScreenName.setText(" @" + tweet.user.screenName);
         holder.tvRelativeTime.setText("•" + tweet.relativeTime);
 
+
+
         Glide.with(context)
                 .load(tweet.user.profileImageUrl)
+                .bitmapTransform(new RoundedCornersTransformation(context, 3, 5))
                 .into(holder.ivProfileImage);
     }
 
@@ -82,6 +88,7 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public TextView tvScreenName;
         public TextView tvRelativeTime;
         public ImageButton ibReply;
+        public RelativeLayout rlTweet;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -93,12 +100,23 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvScreenName = (TextView) itemView.findViewById(R.id.tvScreenName);
             tvRelativeTime = (TextView) itemView.findViewById(R.id.tvRelativeTime);
             ibReply = (ImageButton) itemView.findViewById(R.id.ibReply);
+            rlTweet = (RelativeLayout) itemView.findViewById(R.id.rlTweet);
 
             ibReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int pos = getAdapterPosition();
                     Intent i = new Intent(context, ReplyActivity.class);
+                    i.putExtra("tweet", mTweets.get(pos));
+                    context.startActivity(i);
+                }
+            });
+
+            rlTweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    Intent i = new Intent(context, tweetDetails.class);
                     i.putExtra("tweet", mTweets.get(pos));
                     context.startActivity(i);
                 }
