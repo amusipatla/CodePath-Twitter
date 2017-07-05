@@ -52,6 +52,7 @@ public class TweetsListFragment extends Fragment {
         return v;
     }
 
+
     public void addItems(JSONArray response) {
         try {
             for(int i = 0; i < response.length(); i++) {
@@ -66,4 +67,5 @@ public class TweetsListFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
 }

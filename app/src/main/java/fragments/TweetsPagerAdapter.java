@@ -11,6 +11,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class TweetsPagerAdapter extends FragmentPagerAdapter {
 
+    private HomeTimelineFragment homeTimelineFragment;
+    private MentionsTimelineFragment mentionsTimelineFragment;
+
     private String tabTitles[] = new String[] {"Home", "Mentions"};
     Context context;
 
@@ -32,12 +35,29 @@ public class TweetsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new HomeTimelineFragment();
+            homeTimelineFragment = getHomeTimelineFragment();
+            return homeTimelineFragment;
         } else if (position == 1) {
-            return new MentionsTimelineFragment();
+            mentionsTimelineFragment = getMentionsTimelineFragment();
+            return mentionsTimelineFragment;
         } else {
             return null;
         }
+    }
+
+
+    private HomeTimelineFragment getHomeTimelineFragment(){
+        if (homeTimelineFragment == null) {
+            homeTimelineFragment = new HomeTimelineFragment();
+        }
+        return homeTimelineFragment;
+    }
+
+    private MentionsTimelineFragment getMentionsTimelineFragment(){
+        if (mentionsTimelineFragment == null) {
+            mentionsTimelineFragment = new MentionsTimelineFragment();
+        }
+        return mentionsTimelineFragment;
     }
 
     //return title

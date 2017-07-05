@@ -8,6 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.codepath.apps.restclienttemplate.models.Tweet;
+
+import fragments.HomeTimelineFragment;
 import fragments.TweetsListFragment;
 import fragments.TweetsPagerAdapter;
 
@@ -16,6 +19,8 @@ public class TimelineActivity extends AppCompatActivity {
 //    private SwipeRefreshLayout swipeContainer;
 
     TweetsListFragment fragmentTweetsList;
+    TweetsPagerAdapter pagerAdapter;
+    ViewPager vpPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +28,10 @@ public class TimelineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         //get the view pager
-        ViewPager vpPager = (ViewPager) findViewById(R.id.viewpager);
+        vpPager = (ViewPager) findViewById(R.id.viewpager);
         //set adapter for pager
-        vpPager.setAdapter(new TweetsPagerAdapter(getSupportFragmentManager(), this));
+        pagerAdapter = new TweetsPagerAdapter(getSupportFragmentManager(), this);
+        vpPager.setAdapter(pagerAdapter);
         //set up TabLayout
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(vpPager);
@@ -116,23 +122,22 @@ public class TimelineActivity extends AppCompatActivity {
     public void onProfileView(MenuItem item) {
         //launch profile view
         Intent i = new Intent(this, ProfileActivity.class);
+        i.putExtra("other_user", false);
         startActivity(i);
     }
 
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        // check request code and result code first
-//
-//        // Use data parameter
-//        if(requestCode == resultCode) {
-//            Tweet tweet = data.getParcelableExtra("tweet");
-//            tweets.add(0, tweet);
-//            tweetAdapter.notifyItemInserted(0);
-//            rvTweets.scrollToPosition(0);
-//        }
-//    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == requestCode) {
+            Tweet tweet = data.getParcelableExtra("tweet");
+            Object o = vpPager.getCurrentItem();
+            if (o instanceof HomeTimelineFragment) {
+                ((HomeTimelineFragment) o).addTweet(tweet);
+            }
+            ((HomeTimelineFragment) pagerAdapter.getItem(vpPager.getCurrentItem())).addTweet(tweet);
+        }
+    }
 
 
 }
