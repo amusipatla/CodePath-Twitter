@@ -48,28 +48,30 @@
 
     <ImageButton
         android:id="@+id/ibDetailReply"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         app:srcCompat="@drawable/reply"
-        android:layout_below="@+id/tvDetailTweet"
-        android:layout_alignEnd="@+id/ivDetailPic" />
+        android:layout_toLeftOf="@+id/ibDetailFavorite"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:layout_below="@+id/tvDetailTweet" />
 
     <ImageButton
         android:id="@+id/ibDetailFavorite"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignBottom="@+id/ibDetailReply"
-        android:layout_toEndOf="@+id/tvDetailHandle"
-        android:background="@android:color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         app:srcCompat="?android:attr/selectableItemBackground" />
 
     <ImageButton
         android:id="@+id/ibDetailRetweet"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_alignTop="@+id/ibDetailFavorite"
-        android:layout_marginStart="63dp"
-        android:layout_toEndOf="@+id/ibDetailFavorite"
+        android:layout_toRightOf="@+id/ibDetailFavorite"
         android:background="@android:color/white"
         app:srcCompat="?android:attr/selectableItemBackground" />
 </RelativeLayout>

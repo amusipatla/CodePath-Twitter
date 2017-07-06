@@ -89,9 +89,15 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
         public TextView tvRelativeTime;
         public ImageButton ibReply;
         public RelativeLayout rlTweet;
+        public ImageButton ibFavorite;
+        public ImageButton ibRetweet;
+        TwitterClient client;
+        Tweet tweet;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            client = TwitterApp.getRestClient();
 
             //perform findViewById lookups
             ivProfileImage = (ImageView) itemView.findViewById(R.id.ivProfileImage);
@@ -101,6 +107,23 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
             tvRelativeTime = (TextView) itemView.findViewById(R.id.tvRelativeTime);
             ibReply = (ImageButton) itemView.findViewById(R.id.ibReply);
             rlTweet = (RelativeLayout) itemView.findViewById(R.id.rlTweet);
+            ibFavorite = (ImageButton) itemView.findViewById(R.id.ibFavorite);
+            ibRetweet = (ImageButton) itemView.findViewById(R.id.ibRetweet);
+
+
+//            if(tweet.favorited) {
+//                ibFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+//            }
+//            else {
+//                ibFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+//            }
+//
+//            if(tweet.retweeted) {
+//                ibRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
+//            }
+//            else {
+//                ibRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
+//            }
 
             ibReply.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -132,6 +155,175 @@ public class TweetAdapter extends RecyclerView.Adapter<TweetAdapter.ViewHolder> 
                     context.startActivity(i);
                 }
             });
+
+//            ibFavorite.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    if(tweet.favorited) {
+//                        client.unfavoriteTweet(tweet, new JsonHttpResponseHandler() {
+//                            @Override
+//
+//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                                Log.d("TwitterClient", response.toString());
+//                                Toast.makeText(context, "Favorited", Toast.LENGTH_SHORT);
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                                Log.d("TwitterClient", response.toString());
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+//                                Log.d("TwitterClient", responseString);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                                Log.d("TwitterClient", responseString);
+//                                throwable.printStackTrace();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//                        });
+//                        tweet.favorited = false;
+//                        ibFavorite.setBackgroundResource(R.drawable.ic_vector_heart_stroke);
+//                    }
+//
+//                    else {
+//                        client.favoriteTweet(tweet, new JsonHttpResponseHandler() {
+//                            @Override
+//
+//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                                Log.d("TwitterClient", response.toString());
+//                                Toast.makeText(context, "Unfavorited", Toast.LENGTH_SHORT);
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                                Log.d("TwitterClient", response.toString());
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+//                                Log.d("TwitterClient", responseString);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                                Log.d("TwitterClient", responseString);
+//                                throwable.printStackTrace();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//                        });
+//                        tweet.favorited = true;
+//                        ibFavorite.setBackgroundResource(R.drawable.ic_vector_heart);
+//                    }
+//
+//                }
+//            });
+//
+//            ibRetweet.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if(tweet.retweeted) {
+//                        client.unretweet(tweet, new JsonHttpResponseHandler() {
+//                            @Override
+//
+//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                                Log.d("TwitterClient", response.toString());
+//                                Toast.makeText(context, "Favorited", Toast.LENGTH_SHORT);
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                                Log.d("TwitterClient", response.toString());
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+//                                Log.d("TwitterClient", responseString);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                                Log.d("TwitterClient", responseString);
+//                                throwable.printStackTrace();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//                        });
+//                        tweet.retweeted = false;
+//                        ibRetweet.setBackgroundResource(R.drawable.ic_vector_retweet_stroke);
+//                    }
+//
+//                    else {
+//                        client.retweet(tweet, new JsonHttpResponseHandler() {
+//                            @Override
+//
+//                            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+//                                Log.d("TwitterClient", response.toString());
+//                                Toast.makeText(context, "Unfavorited", Toast.LENGTH_SHORT);
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+//                                Log.d("TwitterClient", response.toString());
+//                            }
+//
+//                            @Override
+//                            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+//                                Log.d("TwitterClient", responseString);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+//                                Log.d("TwitterClient", responseString);
+//                                throwable.printStackTrace();
+//                            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//
+//                            @Override
+//                            public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONArray errorResponse) {
+//                                Log.d("TwitterClient", errorResponse.toString());
+//                                throwable.printStackTrace();            }
+//                        });
+//                        tweet.retweeted = true;
+//                        ibRetweet.setBackgroundResource(R.drawable.ic_vector_retweet);
+//                    }
+//
+//                }
+//            });
 
         }
 

@@ -62,11 +62,35 @@
         android:id="@+id/ibReply"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_alignStart="@+id/tvBody"
+        android:layout_toLeftOf="@+id/ibFavorite"
         android:layout_below="@+id/tvBody"
         android:background="@android:color/white"
         android:backgroundTint="@android:color/white"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/reply" />
+
+    <ImageButton
+        android:id="@+id/ibFavorite"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:scaleType="fitXY"
+        app:srcCompat="?android:attr/selectableItemBackground"
+        android:layout_below="@+id/tvBody"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"/>
+
+    <ImageButton
+        android:id="@+id/ibRetweet"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:scaleType="fitXY"
+        app:srcCompat="?android:attr/selectableItemBackground"
+        android:layout_below="@+id/tvBody"
+        android:layout_toRightOf="@id/ibFavorite" />
 
 </RelativeLayout>

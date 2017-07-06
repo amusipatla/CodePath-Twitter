@@ -36,6 +36,7 @@ public class HomeTimelineFragment extends TweetsListFragment {
 
     }
 
+
     private void populateTimeline() {
         client.getHomeTimeline(new JsonHttpResponseHandler() {
             @Override
