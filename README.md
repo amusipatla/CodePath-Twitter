@@ -69,7 +69,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://github.com/amusipatla/CodePath-Twitter/blob/master/SimpleTwitterWalkthrough-iloveimg-compressed.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/amusipatla/CodePath-Twitter/blob/master/simpleTwitterWalkthrough.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Notes
 
