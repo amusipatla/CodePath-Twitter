@@ -2,12 +2,13 @@
 
 **Simple Twitter** is an android app that allows a user to view his Twitter timeline and post a new tweet. The app utilizes [Twitter REST API](https://dev.twitter.com/rest/public).
 
-Time spent: **21** hours spent in total
+Time spent: **40** hours spent in total
 
 ## User Stories
 
 The following **required** functionality is completed:
 
+(Twitter Part 1)
 * [x]	User can **sign in to Twitter** using OAuth login
 * [x]	User can **view tweets from their home timeline**
   * [x] User is displayed the username, name, and body for each tweet
@@ -17,15 +18,32 @@ The following **required** functionality is completed:
   * [x] User can then enter a new tweet and post this to twitter
   * [x] User is taken back to home timeline with **new tweet visible** in timeline
   * [x] Newly created tweet should be manually inserted into the timeline and not rely on a full refresh
+  
+(Twitter Part 2)
+* [x] Includes all required user stories from Twitter Part 1.
+* [x] User can switch between Timeline and Mention views using tabs. (3 points)
+  * [x] User can view their home timeline tweets.
+  * [x] User can view the recent mentions of their username.
+  * [x] User can compose tweets. See this conceptual guide for passing data into a timeline fragment.
+* [x] User can navigate to view their own profile (2 points)
+  * [x] User can see picture, tagline, # of followers, # of following, and tweets on their profile.
+  * [x] The users/verify_credentials endpoint can be used to access this information.
+* [x] User can click on the profile image in any tweet to see another user's profile. (3 points)
+  * [x] User can see picture, tagline, # of followers, # of following, and tweets of clicked user.
+  * [x] Profile view should include that user's timeline
+  * [x] The users/show endpoint can be used to access this information.
 
 The following **optional** features are implemented:
 
 * [x] User can **see a counter with total number of characters left for tweet** on compose tweet page
 * [x] User can **pull down to refresh tweets timeline**
-* [ ] User is using **"Twitter branded" colors and styles**
+* [x] User is using **"Twitter branded" colors and styles**
 * [ ] User sees an **indeterminate progress indicator** when any background or network task is happening
 * [x] User can **select "reply" from detail view to respond to a tweet**
   * [x] User that wrote the original tweet is **automatically "@" replied in compose**
+* [x] User can "reply" to any tweet from their home timeline (1 point)
+  * [x] The user that wrote the original tweet is automatically "@" replied in compose
+* [x] User can search for tweets matching a particular query and see results. (1 point)
 * [x] User can tap a tweet to **open a detailed tweet view**
   * [x] User can **take favorite (and unfavorite) or reweet** actions on a tweet
 * [ ] User can **see embedded image media within a tweet** on list or detail view.
@@ -43,10 +61,9 @@ The following **bonus** features are implemented:
 * [ ] On the Twitter timeline, leverage the [CoordinatorLayout](http://guides.codepath.com/android/Handling-Scrolls-with-CoordinatorLayout#responding-to-scroll-events) to apply scrolling behavior that [hides / shows the toolbar](http://guides.codepath.com/android/Using-the-App-ToolBar#reacting-to-scroll).
 * [ ] User can **open the twitter app offline and see last loaded tweets**. Persisted in SQLite tweets are refreshed on every application launch. While "live data" is displayed when app can get it from Twitter API, it is also saved for use in offline mode.
 
-
 The following **additional** features are implemented:
 
-* [ ] List anything else that you can get done to improve the app functionality!
+* [x] User can favorite/unfavorite and retweet/unretweet from both the home timeline and detail views.
 
 ## Video Walkthrough
 
